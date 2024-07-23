@@ -236,13 +236,13 @@
             <a href="https://jd.com" target="_blank">京东(Jingdong,JD.com)</a>
         </div>
         <div class="search-form">
-            <input type="text" id="search-input" placeholder="検索キーワードを入力">
+            <input type="text" id="search-input" placeholder="Enter your search query">
             <button onclick="searchQuery()">Search</button>
         </div>
     </div>
 
     <div class="hint">
-        when you type "how to turning", the search bar is rotating.を入力すると検索欄が回り始めるよ<br>
+        when you type "how to turning", the search bar is rotating.<br>
         when you type "how to stop turning", the rotating is stop.<br>
         when you type "how to stop animation", the background's gradient stops.<br>
         Created by FlatPonch and Deployed by <a href="https://vercel.com">Vercel</a>.
@@ -256,7 +256,7 @@
     <!-- Modal for search engine selection -->
     <div id="searchEngineModal" class="modal">
         <div class="modal-content">
-            <h2>検索エンジンを選択してください:</h2>
+            <h2>Please Select the Search Engine:</h2>
             <button onclick="performSearch('1')">Google</button>
             <button onclick="performSearch('2')">Microsoft Bing</button>
             <button onclick="performSearch('3')">Startpage</button>
@@ -264,7 +264,7 @@
             <button onclick="performSearch('5')">Wikipedia (日本語)</button>
             <button onclick="performSearch('6')">Wikipedia (English)</button>
             <button onclick="performSearch('7')">YouTube</button>
-            <button onclick="performSearch('8')">Amazon (日本)</button>
+            <button onclick="performSearch('8')">Amazon.co.jp</button>
             <button onclick="performSearch('9')">Perplexity AI</button>
             <button onclick="performSearch('10')">Brave Search(AI)</button>
             <button onclick="performSearch('11')">mojeek</button>
@@ -353,7 +353,7 @@
                     searchUrl = `https://search.jd.com/Search?keyword=${encodeURIComponent(query)}`;
                     break;
                 default:
-                    alert('Unavailable Selection. Please Retry. if you think that is bug. please tell me on discord(@flatponch3655) or matrix(@flatponch:matrix.org).');
+                    alert('Invalid Selection. Please try again. if you think that is bug. please tell me on discord(@flatponch3655) or matrix(@flatponch:matrix.org).');
                     return;
             }
 
