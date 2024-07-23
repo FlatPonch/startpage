@@ -1,96 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlatPonch Startpage</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            animation: gradient 10s ease infinite;
+            background: linear-gradient(135deg, #667eea, #764ba2, #9b59b6, #e74c3c, #f39c12, #2ecc71, #3498db);
+            background-size: 800% 800%;
+        }
+
+        /* Animations */
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Container styles */
+        .container {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Search engine links */
+        .search-engines {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .search-engines a {
+            color: #fff;
+            text-decoration: none;
+            margin: 5px 10px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .search-engines a:hover {
+            color: #ffc107;
+            transform: scale(1.2);
+        }
+
+        /* Search form styles */
+        .search-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-form input[type="text"] {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            width: 300px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #fff;
+        }
+
+        .search-form button {
+            padding: 10px 20px;
+            background-color: #ffc107;
+            color: #333;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .search-form button:hover {
+            background-color: #e0a800;
+            transform: scale(1.1);
+        }
+
+        /* Hint and navigation styles */
+        .hint, .navigation {
+            position: fixed;
+            bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hint { left: 20px; }
+        .navigation { right: 20px; }
+
+        .navigation a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .navigation a:hover { color: #ffc107; }
+
+        /* Turning animation */
+        body.turning {
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        .modal-content h2 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        .modal-content button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .modal-content button:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                height: auto;
+                padding-top: 120px;
+            }
+
+            .container {
+                max-width: 100vw;
+                padding: 20px;
+                border-radius: 0;
+                box-shadow: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1;
+            }
+
+            .search-engines {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-engines a {
+                display: block;
+                margin: 5px 0;
+                padding: 10px;
+                background-color: rgba(255, 255, 255, 0.2);
+                border-radius: 5px;
+                text-align: center;
+            }
+
+            .search-form { margin-top: 10px; }
+
+            .hint, .navigation { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search-engines">
+            <!-- Search engine links -->
+            <a href="https://www.google.com/" target="_blank">Google</a>
+            <a href="https://www.bing.com/" target="_blank">Microsoft Bing</a>
+            <a href="https://www.startpage.com/" target="_blank">Startpage</a>
+            <a href="https://www.ecosia.org/" target="_blank">Ecosia</a>
+            <a href="https://ja.wikipedia.org/" target="_blank">Wikipedia(Japanese)</a>
+            <a href="https://en.wikipedia.org/" target="_blank">Wikipedia(English)</a>
+            <a href="https://www.youtube.com/" target="_blank">YouTube</a>
+            <a href="https://www.amazon.co.jp/" target="_blank">Amazon</a>
+            <a href="https://www.perplexity.ai/" target="_blank">Perplexity AI</a>
+            <a href="https://search.brave.com" target="_blank">Brave Search</a>
+            <a href="https://www.mojeek.com/" target="_blank">mojeek</a>
+            <a href="https://www.bilibili.com/" target="_blank">bilibili</a>
+            <a href="https://www.baidu.com/" target="_blank">百度(Baidu)</a>
+            <a href="https://www.aliexpress.com/" target="_blank">Aliexpress</a>
+            <a href="https://jd.com" target="_blank">京东(Jingdong,JD.com)</a>
+        </div>
+        <div class="search-form">
+            <input type="text" id="search-input" placeholder="検索キーワードを入力">
+            <button onclick="searchQuery()">Search</button>
+        </div>
+    </div>
+
+    <div class="hint">
+        when you type "how to turning", the search bar is rotating.を入力すると検索欄が回り始めるよ<br>
+        when you type "how to stop turning", the rotating is stop.<br>
+        when you type "how to stop animation", the background's gradient stops.<br>
+        Created by FlatPonch and Deployed by <a href="https://vercel.com">Vercel</a>.
+        Original HTML Code by <a href="https://popmix-os.net/">Popmix Group.</a>
+    </div>
+
+    <div class="navigation">
+        <a href="https://flatponch.xyz">Creator</a>
+    </div>
+
+    <!-- Modal for search engine selection -->
+    <div id="searchEngineModal" class="modal">
+        <div class="modal-content">
+            <h2>検索エンジンを選択してください:</h2>
+            <button onclick="performSearch('1')">Google</button>
+            <button onclick="performSearch('2')">Microsoft Bing</button>
+            <button onclick="performSearch('3')">Startpage</button>
+            <button onclick="performSearch('4')">Ecosia</button>
+            <button onclick="performSearch('5')">Wikipedia (日本語)</button>
+            <button onclick="performSearch('6')">Wikipedia (English)</button>
+            <button onclick="performSearch('7')">YouTube</button>
+            <button onclick="performSearch('8')">Amazon (日本)</button>
+            <button onclick="performSearch('9')">Perplexity AI</button>
+            <button onclick="performSearch('10')">Brave Search(AI)</button>
+            <button onclick="performSearch('11')">mojeek</button>
+            <button onclick="performSearch('12')">bilibili</button>
+            <button onclick="performSearch('13')">百度(Baidu)</button>
+            <button onclick="performSearch('14')">Aliexpress</button>
+            <button onclick="performSearch('15')">京东(Jingdong,JD.com)</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle search queries
+        function searchQuery() {
+            const query = document.getElementById('search-input').value;
+            const body = document.querySelector('body');
+
+            // Special commands
+            if (query.toLowerCase() === 'how to stop animation') {
+                stopAnimation();
+                alert('Animation has stopped.');
+                return;
+            }
+            if (query.toLowerCase() === 'how to turning') {
+                body.classList.add('turning');
+                alert('Start Rotating.');
+                return;
+            } else if (query.toLowerCase() === 'how to stop turning') {
+                body.classList.remove('turning');
+                alert('Rotating was rapidly stopped.');
+                return;
+            }
+
+            // Show the modal for search engine selection
+            document.getElementById('searchEngineModal').style.display = 'block';
+        }
+
+        // Function to perform the search based on the selected engine
+        function performSearch(engineId) {
+            const query = document.getElementById('search-input').value;
+            let searchUrl;
+
+            switch (engineId) {
+                case '1':
+                    searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                    break;
+                case '2':
+                    searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+                    break;
+                case '3':
+                    searchUrl = `https://www.startpage.com/do/search?q=${encodeURIComponent(query)}`;
+                    break;
+                case '4':
+                    searchUrl = `https://www.ecosia.org/search?q=${encodeURIComponent(query)}`;
+                    break;
+                case '5':
+                    searchUrl = `https://ja.wikipedia.org/wiki/${encodeURIComponent(query)}`;
+                    break;
+                case '6':
+                    searchUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(query)}`;
+                    break;
+                case '7':
+                    searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
+                    break;
+                case '8':
+                    searchUrl = `https://www.amazon.co.jp/s?k=${encodeURIComponent(query)}`;
+                    break;
+                case '9':
+                    searchUrl = `https://www.perplexity.ai/search?q=${encodeURIComponent(query)}`;
+                    break;
+                case '10':
+                    searchUrl = `https://search.brave.com/search?q=${encodeURIComponent(query)}&summary=1`;
+                    break;
+                case '11':
+                    searchUrl = `https://www.mojeek.com/search?q=${encodeURIComponent(query)}`;
+                    break;
+                case '12':
+                    searchUrl = `https://search.bilibili.com/all?keyword=${encodeURIComponent(query)}`;
+                    break;
+                case '13':
+                    searchUrl = `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;
+                    break;
+                case '14':
+                    searchUrl = `https://www.aliexpress.com/w/wholesale-${encodeURIComponent(query)}.html`;
+                    break;
+                case '15':
+                    searchUrl = `https://search.jd.com/Search?keyword=${encodeURIComponent(query)}`;
+                    break;
+                default:
+                    alert('Unavailable Selection. Please Retry. if you think that is bug. please tell me on discord(@flatponch3655) or matrix(@flatponch:matrix.org).');
+                    return;
+            }
+
+            // Close the modal
+            document.getElementById('searchEngineModal').style.display = 'none';
+
+            // Open the search URL in a new tab
+            window.open(searchUrl, '_blank');
+        }
+
+        // Function to stop the background animation
+        function stopAnimation() {
+            document.body.style.animation = 'none';
+            document.querySelector('.container').style.animation = 'none';
+        }
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('searchEngineModal')) {
+                document.getElementById('searchEngineModal').style.display = 'none';
+            }
+        }
+    </script>
+</body>
 </html>
