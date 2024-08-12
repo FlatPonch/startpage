@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlatPonch Startpage</title>
     <style>
+        @font-face {
+            font-family:"HarmonyOS Sans" ;
+            src: url(https://flatponch.xyz/fonts/HarmonyOS_Sans_Medium.ttf) format("truetype");
+        }
         /* Global styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: "HarmonyOS Sans", sans-serif;
             color: #fff;
             display: flex;
             justify-content: center;
@@ -230,10 +234,11 @@
             <a href="https://www.perplexity.ai/" target="_blank">Perplexity AI</a>
             <a href="https://search.brave.com" target="_blank">Brave Search</a>
             <a href="https://www.mojeek.com/" target="_blank">mojeek</a>
+            <a href="https://nicovideo.jp/">nicovideo(ニコニコ動画)</a>
             <a href="https://www.bilibili.com/" target="_blank">bilibili</a>
             <a href="https://www.baidu.com/" target="_blank">百度(Baidu)</a>
             <a href="https://www.aliexpress.com/" target="_blank">Aliexpress</a>
-            <a href="https://jd.com" target="_blank">京东(Jingdong,JD.com)</a>
+            <a href="https://www.temu.com" target="_blank">Temu</a>
         </div>
         <div class="search-form">
             <input type="text" id="search-input" placeholder="Enter your search query">
@@ -242,16 +247,17 @@
     </div>
 
     <div class="hint">
-        when you type "how to turning", the search bar is rotating.<br>
+        when you type "how to start turning", the search bar is rotating.<br>
         when you type "how to stop turning", the rotating is stop.<br>
-        when you type "how to stop animation", the background's gradient stops.<br>
+        when you type "how to stop animation", the background's gradient stop.(when background)<br>
+        when you type "how to start animation", the backgroun's gradient start.<br>
         English Translated by <a href="https://flatponch.xyz">FlatPonch</a><br>
         Deployed with <a href="https://vercel.com">Vercel<a>.<br>
-        Original HTML Code by <a href="https://popmix-os.net/">Popmix Group.
+        Original HTML Code by <a href="https://popmix-os.net/">Popmix Group.</a>
     </div>
 
     <div class="navigation">
-        <a href="https://flatponch.xyz">Creator</a>
+        <a href="https://flatponch.xyz">Click me</a>
     </div>
 
     <!-- Modal for search engine selection -->
@@ -262,17 +268,17 @@
             <button onclick="performSearch('2')">Microsoft Bing</button>
             <button onclick="performSearch('3')">Startpage</button>
             <button onclick="performSearch('4')">Ecosia</button>
-            <button onclick="performSearch('5')">Wikipedia (日本語)</button>
-            <button onclick="performSearch('6')">Wikipedia (English)</button>
+            <button onclick="performSearch('5')">Wikipedia</button>
+            <button onclick="performSearch('6')">Wikipedia(Japanese)</button>
             <button onclick="performSearch('7')">YouTube</button>
-            <button onclick="performSearch('8')">Amazon.co.jp</button>
+            <button onclick="performSearch('8')">Amazon.com</button>
             <button onclick="performSearch('9')">Perplexity AI</button>
             <button onclick="performSearch('10')">Brave Search(AI)</button>
             <button onclick="performSearch('11')">mojeek</button>
             <button onclick="performSearch('12')">bilibili</button>
             <button onclick="performSearch('13')">百度(Baidu)</button>
             <button onclick="performSearch('14')">Aliexpress</button>
-            <button onclick="performSearch('15')">京东(Jingdong,JD.com)</button>
+            <button onclick="performSearch('15')">Temu</button>
         </div>
     </div>
 
@@ -286,6 +292,9 @@
             if (query.toLowerCase() === 'how to stop animation') {
                 stopAnimation();
                 alert('Animation has stopped.');
+                return;
+            } else if (query.toLowerCase() === 'how to start animation') {
+                alert('Animation has started.');
                 return;
             }
             if (query.toLowerCase() === 'how to turning') {
@@ -321,16 +330,16 @@
                     searchUrl = `https://www.ecosia.org/search?q=${encodeURIComponent(query)}`;
                     break;
                 case '5':
-                    searchUrl = `https://ja.wikipedia.org/wiki/${encodeURIComponent(query)}`;
+                    searchUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(query)}`;
                     break;
                 case '6':
-                    searchUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(query)}`;
+                    searchUrl = `https://ja.wikipedia.org/wiki/${encodeURIComponent(query)}`;
                     break;
                 case '7':
                     searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
                     break;
                 case '8':
-                    searchUrl = `https://www.amazon.co.jp/s?k=${encodeURIComponent(query)}`;
+                    searchUrl = `https://www.amazon.com/s?k=${encodeURIComponent(query)}`;
                     break;
                 case '9':
                     searchUrl = `https://www.perplexity.ai/search?q=${encodeURIComponent(query)}`;
@@ -351,11 +360,12 @@
                     searchUrl = `https://www.aliexpress.com/w/wholesale-${encodeURIComponent(query)}.html`;
                     break;
                 case '15':
-                    searchUrl = `https://search.jd.com/Search?keyword=${encodeURIComponent(query)}`;
+                    searchUrl = `https://www.temu.com/search_result.html?search_key=${encodeURIComponent(query)}`;
                     break;
                 default:
                     alert('Invalid Selection. Please try again.');
                     return;
+                    // don't use temu i swear
             }
 
             // Close the modal
@@ -370,6 +380,10 @@
             document.body.style.animation = 'none';
             document.querySelector('.container').style.animation = 'none';
         }
+        function startAnimaton() {
+            document.body.style.animation = 'true'
+            document.querySelector('.container').style.animation = 'true';
+        }
 
         // Close the modal when clicking outside of it
         window.onclick = function(event) {
@@ -377,6 +391,7 @@
                 document.getElementById('searchEngineModal').style.display = 'none';
             }
         }
+        // fuck you trackers
     </script>
 </body>
 </html>
