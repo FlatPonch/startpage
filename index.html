@@ -5,137 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlatPonch Startpage</title>
     <style>
-        @font-face {
-            font-family:"HarmonyOS Sans" ;
-            src: url(https://flatponch.xyz/fonts/HarmonyOS_Sans_Medium.ttf) format("truetype");
-        }
-        /* Global styles */
         body {
-            font-family: "HarmonyOS Sans", sans-serif;
-            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            animation: gradient 10s ease infinite;
+            min-height: 100vh;
             background: linear-gradient(135deg, #667eea, #764ba2, #9b59b6, #e74c3c, #f39c12, #2ecc71, #3498db);
             background-size: 800% 800%;
+            animation: gradient 10s ease infinite;
         }
-
-        /* Animations */
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        /* Container styles */
-        .container {
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-            text-align: center;
-            max-width: 500px;
-            width: 100%;
-            backdrop-filter: blur(10px);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        /* Search engine links */
-        .search-engines {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .search-engines a {
-            color: #fff;
-            text-decoration: none;
-            margin: 5px 10px;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .search-engines a:hover {
-            color: #ffc107;
-            transform: scale(1.2);
-        }
-
-        /* Search form styles */
-        .search-form {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .search-form input[type="text"] {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px 0 0 5px;
-            width: 300px;
-            font-size: 16px;
-            background-color: rgba(255, 255, 255, 0.3);
-            color: #fff;
-        }
-
-        .search-form button {
-            padding: 10px 20px;
-            background-color: #ffc107;
-            color: #333;
-            border: none;
-            border-radius: 0 5px 5px 0;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .search-form button:hover {
-            background-color: #e0a800;
-            transform: scale(1.1);
-        }
-
-        /* Hint and navigation styles */
-        .hint, .navigation {
-            position: fixed;
-            bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.3);
-            color: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        }
-
-        .hint { left: 20px; }
-        .navigation { right: 20px; }
-
-        .navigation a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .navigation a:hover { color: #ffc107; }
-
-        /* Turning animation */
-        body.turning {
-            animation: rotate 8s linear infinite;
-        }
-
         @keyframes rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        /* Modal styles */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        .search-engines {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .search-engines a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .search-engines a:hover {
+            color: #ffc107;
+        }
+        .search-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .search-form input[type="text"] {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px;
+        }
+        .search-form select, .search-form button {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #4a5568;
+            color: white;
+            cursor: pointer;
+        }
+        .settings-btn {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #4a5568;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
         .modal {
             display: none;
             position: fixed;
@@ -144,10 +95,8 @@
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
             background-color: rgba(0,0,0,0.4);
         }
-
         .modal-content {
             background-color: #fefefe;
             margin: 15% auto;
@@ -155,243 +104,232 @@
             border: 1px solid #888;
             width: 80%;
             max-width: 500px;
-            border-radius: 10px;
         }
-
-        .modal-content h2 {
-            color: #333;
-            margin-top: 0;
-        }
-
-        .modal-content button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
-
-        .modal-content button:hover {
-            background-color: #45a049;
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            body {
-                height: auto;
-                padding-top: 120px;
-            }
-
-            .container {
-                max-width: 100vw;
-                padding: 20px;
-                border-radius: 0;
-                box-shadow: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 1;
-            }
-
-            .search-engines {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .search-engines a {
-                display: block;
-                margin: 5px 0;
-                padding: 10px;
-                background-color: rgba(255, 255, 255, 0.2);
-                border-radius: 5px;
-                text-align: center;
-            }
-
-            .search-form { margin-top: 10px; }
-
-            .hint, .navigation { display: none; }
+        #clickMe {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            color: white;
+            text-decoration: none;
+        }
+        #clickMe:hover {
+            color: #ffc107;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="search-engines">
-            <!-- Search engine links -->
-            <a href="https://www.google.com/" target="_blank">Google</a>
-            <a href="https://www.bing.com/" target="_blank">Microsoft Bing</a>
-            <a href="https://www.startpage.com/" target="_blank">Startpage</a>
-            <a href="https://www.ecosia.org/" target="_blank">Ecosia</a>
-            <a href="https://ja.wikipedia.org/" target="_blank">Wikipedia(Japanese)</a>
-            <a href="https://en.wikipedia.org/" target="_blank">Wikipedia(English)</a>
-            <a href="https://www.youtube.com/" target="_blank">YouTube</a>
-            <a href="https://www.amazon.co.jp/" target="_blank">Amazon</a>
-            <a href="https://www.perplexity.ai/" target="_blank">Perplexity AI</a>
-            <a href="https://search.brave.com" target="_blank">Brave Search</a>
-            <a href="https://www.mojeek.com/" target="_blank">mojeek</a>
-            <a href="https://nicovideo.jp/">nicovideo(ニコニコ動画)</a>
-            <a href="https://www.bilibili.com/" target="_blank">bilibili</a>
-            <a href="https://www.baidu.com/" target="_blank">百度(Baidu)</a>
-            <a href="https://www.aliexpress.com/" target="_blank">Aliexpress</a>
-            <a href="https://www.temu.com" target="_blank">Temu</a>
-        </div>
-        <div class="search-form">
-            <input type="text" id="search-input" placeholder="Enter your search query">
-            <button onclick="searchQuery()">Search</button>
-        </div>
+        <div class="search-engines" id="searchEngines"></div>
+        <form class="search-form" id="searchForm">
+            <input type="text" id="searchInput" placeholder="Enter your search query">
+            <select id="searchEngineSelect"></select>
+            <button type="submit">Search</button>
+        </form>
     </div>
 
-    <div class="hint">
-        when you type "how to start turning", the search bar is rotating.<br>
-        when you type "how to stop turning", the rotating is stop.<br>
-        when you type "how to stop animation", the background's gradient stop.(when background)<br>
-        when you type "how to start animation", the backgroun's gradient start.<br>
-        English Translated by <a href="https://flatponch.xyz">FlatPonch</a><br>
-        Deployed with <a href="https://vercel.com">Vercel<a>.<br>
-        Original HTML Code by <a href="https://popmix-os.net/">Popmix Group.</a>
-    </div>
+    <button class="settings-btn" id="settingsBtn">Settings</button>
 
-    <div class="navigation">
-        <a href="https://flatponch.xyz">Click me</a>
-    </div>
-
-    <!-- Modal for search engine selection -->
-    <div id="searchEngineModal" class="modal">
+    <div id="settingsModal" class="modal">
         <div class="modal-content">
-            <h2>Please Select the Search Engine:</h2>
-            <button onclick="performSearch('1')">Google</button>
-            <button onclick="performSearch('2')">Microsoft Bing</button>
-            <button onclick="performSearch('3')">Startpage</button>
-            <button onclick="performSearch('4')">Ecosia</button>
-            <button onclick="performSearch('5')">Wikipedia</button>
-            <button onclick="performSearch('6')">Wikipedia(Japanese)</button>
-            <button onclick="performSearch('7')">YouTube</button>
-            <button onclick="performSearch('8')">Amazon.com</button>
-            <button onclick="performSearch('9')">Perplexity AI</button>
-            <button onclick="performSearch('10')">Brave Search(AI)</button>
-            <button onclick="performSearch('11')">mojeek</button>
-            <button onclick="performSearch('12')">bilibili</button>
-            <button onclick="performSearch('13')">百度(Baidu)</button>
-            <button onclick="performSearch('14')">Aliexpress</button>
-            <button onclick="performSearch('15')">Temu</button>
+            <span class="close">&times;</span>
+            <h2>Settings</h2>
+            <label for="backgroundSelect">Background:</label>
+            <select id="backgroundSelect">
+                <option value="gradient">Gradient</option>
+                <option value="solid">Solid Color</option>
+                <option value="image">Image</option>
+            </select>
+            <br><br>
+            <div id="imageSettings" style="display: none;">
+                <label for="imageUpload">Image:</label>
+                <input type="file" id="imageUpload" accept="image/*">
+            </div>
+            <br>
+            <label for="textColorSelect">Text Color:</label>
+            <select id="textColorSelect">
+                <option value="white">White</option>
+                <option value="black">Black</option>
+            </select>
+            <br><br>
+            <label for="floatingToggle">Floating Animation:</label>
+            <input type="checkbox" id="floatingToggle">
+            <br><br>
+            <div id="solidColorSettings" style="display: none;">
+                <label for="colorPicker">Color:</label>
+                <input type="color" id="colorPicker" value="#667eea">
+            </div>
+            <h3>Hints</h3>
+            <p>Type "how to start turning" to start rotating the page.</p>
+            <p>Type "how to stop turning" to stop the rotation.</p>
+            <p>Type "how to stop animation" to stop the background animation (when using gradient).</p>
+            <p>Type "how to start animation" to start the background animation (when using gradient).</p>
+            <p>IMPORTANT please don't make White background in solid color option.</p>
         </div>
     </div>
+
+    <a href="https://flatponch.xyz" id="clickMe">Click me</a>
 
     <script>
-        // Function to handle search queries
-        function searchQuery() {
-            const query = document.getElementById('search-input').value;
-            const body = document.querySelector('body');
+        const searchEngines = [
+            { name: 'Google', url: 'https://www.google.com/search?q=' },
+            { name: 'Microsoft Bing', url: 'https://www.bing.com/search?q=' },
+            { name: 'Startpage', url: 'https://www.startpage.com/do/search?q=' },
+            { name: 'Ecosia', url: 'https://www.ecosia.org/search?q=' },
+            { name: 'Wikipedia (Japanese)', url: 'https://ja.wikipedia.org/wiki/' },
+            { name: 'Wikipedia (English)', url: 'https://en.wikipedia.org/wiki/' },
+            { name: 'YouTube', url: 'https://www.youtube.com/results?search_query=' },
+            { name: 'Amazon', url: 'https://www.amazon.co.jp/s?k=' },
+            { name: 'Perplexity AI', url: 'https://www.perplexity.ai/search?q=' },
+            { name: 'Brave Search', url: 'https://search.brave.com/search?q=' },
+            { name: 'mojeek', url: 'https://www.mojeek.com/search?q=' },
+            { name: 'nicovideo', url: 'https://www.nicovideo.jp/search/' },
+            { name: 'bilibili', url: 'https://search.bilibili.com/all?keyword=' },
+            { name: 'Baidu', url: 'https://www.baidu.com/s?wd=' },
+            { name: 'Aliexpress', url: 'https://www.aliexpress.com/w/wholesale-' },
+            { name: 'Temu', url: 'https://www.temu.com/search_result.html?search_key=' },
+        ];
 
-            // Special commands
+        let isAnimated = true;
+        let isRotating = false;
+
+        function populateSearchEngines() {
+            const container = document.getElementById('searchEngines');
+            const select = document.getElementById('searchEngineSelect');
+            searchEngines.forEach(engine => {
+                const link = document.createElement('a');
+                link.href = engine.url;
+                link.textContent = engine.name;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                container.appendChild(link);
+
+                const option = document.createElement('option');
+                option.value = engine.url;
+                option.textContent = engine.name;
+                select.appendChild(option);
+            });
+        }
+
+        function handleSearch(e) {
+            e.preventDefault();
+            const query = document.getElementById('searchInput').value;
+            const selectedEngine = document.getElementById('searchEngineSelect').value;
+
             if (query.toLowerCase() === 'how to stop animation') {
-                stopAnimation();
+                isAnimated = false;
+                document.body.style.animation = 'none';
                 alert('Animation has stopped.');
-                return;
             } else if (query.toLowerCase() === 'how to start animation') {
+                isAnimated = true;
+                document.body.style.animation = 'gradient 10s ease infinite';
                 alert('Animation has started.');
-                return;
-            }
-            if (query.toLowerCase() === 'how to turning') {
-                body.classList.add('turning');
+            } else if (query.toLowerCase() === 'how to turning') {
+                isRotating = true;
+                document.body.style.animation = 'rotate 8s linear infinite';
                 alert('Start Rotating.');
-                return;
             } else if (query.toLowerCase() === 'how to stop turning') {
-                body.classList.remove('turning');
+                isRotating = false;
+                document.body.style.animation = isAnimated ? 'gradient 10s ease infinite' : 'none';
                 alert('Rotating was rapidly stopped.');
-                return;
-            }
-
-            // Show the modal for search engine selection
-            document.getElementById('searchEngineModal').style.display = 'block';
-        }
-
-        // Function to perform the search based on the selected engine
-        function performSearch(engineId) {
-            const query = document.getElementById('search-input').value;
-            let searchUrl;
-
-            switch (engineId) {
-                case '1':
-                    searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-                    break;
-                case '2':
-                    searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
-                    break;
-                case '3':
-                    searchUrl = `https://www.startpage.com/do/search?q=${encodeURIComponent(query)}`;
-                    break;
-                case '4':
-                    searchUrl = `https://www.ecosia.org/search?q=${encodeURIComponent(query)}`;
-                    break;
-                case '5':
-                    searchUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(query)}`;
-                    break;
-                case '6':
-                    searchUrl = `https://ja.wikipedia.org/wiki/${encodeURIComponent(query)}`;
-                    break;
-                case '7':
-                    searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
-                    break;
-                case '8':
-                    searchUrl = `https://www.amazon.com/s?k=${encodeURIComponent(query)}`;
-                    break;
-                case '9':
-                    searchUrl = `https://www.perplexity.ai/search?q=${encodeURIComponent(query)}`;
-                    break;
-                case '10':
-                    searchUrl = `https://search.brave.com/search?q=${encodeURIComponent(query)}&summary=1`;
-                    break;
-                case '11':
-                    searchUrl = `https://www.mojeek.com/search?q=${encodeURIComponent(query)}`;
-                    break;
-                case '12':
-                    searchUrl = `https://search.bilibili.com/all?keyword=${encodeURIComponent(query)}`;
-                    break;
-                case '13':
-                    searchUrl = `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;
-                    break;
-                case '14':
-                    searchUrl = `https://www.aliexpress.com/w/wholesale-${encodeURIComponent(query)}.html`;
-                    break;
-                case '15':
-                    searchUrl = `https://www.temu.com/search_result.html?search_key=${encodeURIComponent(query)}`;
-                    break;
-                default:
-                    alert('Invalid Selection. Please try again.');
-                    return;
-                    // don't use temu i swear
-            }
-
-            // Close the modal
-            document.getElementById('searchEngineModal').style.display = 'none';
-
-            // Open the search URL in a new tab
-            window.open(searchUrl, '_blank');
-        }
-
-        // Function to stop the background animation
-        function stopAnimation() {
-            document.body.style.animation = 'none';
-            document.querySelector('.container').style.animation = 'none';
-        }
-        function startAnimaton() {
-            document.body.style.animation = 'true'
-            document.querySelector('.container').style.animation = 'true';
-        }
-
-        // Close the modal when clicking outside of it
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('searchEngineModal')) {
-                document.getElementById('searchEngineModal').style.display = 'none';
+            } else {
+                window.open(selectedEngine + encodeURIComponent(query), '_blank');
             }
         }
-        // fuck you trackers
+
+        document.getElementById('searchForm').addEventListener('submit', handleSearch);
+
+        // Settings modal
+        const modal = document.getElementById('settingsModal');
+        const btn = document.getElementById('settingsBtn');
+        const span = document.getElementsByClassName('close')[0];
+
+        btn.onclick = () => modal.style.display = 'block';
+        span.onclick = () => modal.style.display = 'none';
+        window.onclick = (event) => {
+            if (event.target == modal) modal.style.display = 'none';
+        };
+
+        // Background settings
+        const backgroundSelect = document.getElementById('backgroundSelect');
+        const solidColorSettings = document.getElementById('solidColorSettings');
+        const imageSettings = document.getElementById('imageSettings');
+        const colorPicker = document.getElementById('colorPicker');
+        const imageUpload = document.getElementById('imageUpload');
+
+        backgroundSelect.addEventListener('change', (e) => {
+            switch (e.target.value) {
+                case 'gradient':
+                    document.body.style.background = 'linear-gradient(135deg, #667eea, #764ba2, #9b59b6, #e74c3c, #f39c12, #2ecc71, #3498db)';
+                    document.body.style.backgroundSize = '800% 800%';
+                    document.body.style.animation = isAnimated ? 'gradient 10s ease infinite' : 'none';
+                    solidColorSettings.style.display = 'none';
+                    imageSettings.style.display = 'none';
+                    break;
+                case 'solid':
+                    document.body.style.background = colorPicker.value;
+                    document.body.style.animation = 'none';
+                    solidColorSettings.style.display = 'block';
+                    imageSettings.style.display = 'none';
+                    break;
+                case 'image':
+                    document.body.style.animation = 'none';
+                    solidColorSettings.style.display = 'none';
+                    imageSettings.style.display = 'block';
+                    break;
+            }
+        });
+
+        colorPicker.addEventListener('change', (e) => {
+            document.body.style.background = e.target.value;
+        });
+
+        imageUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.body.style.backgroundImage = `url(${e.target.result})`;
+                    document.body.style.backgroundSize = 'cover';
+                    document.body.style.backgroundPosition = 'center';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Text color settings
+        const textColorSelect = document.getElementById('textColorSelect');
+        textColorSelect.addEventListener('change', (e) => {
+            document.body.style.color = e.target.value;
+            document.querySelectorAll('a').forEach(a => a.style.color = e.target.value);
+        });
+
+        // Floating animation settings
+        const floatingToggle = document.getElementById('floatingToggle');
+        const container = document.querySelector('.container');
+
+        floatingToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                container.classList.add('floating');
+            } else {
+                container.classList.remove('floating');
+            }
+        });
+
+
+        populateSearchEngines();
     </script>
 </body>
 </html>
