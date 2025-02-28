@@ -186,7 +186,9 @@
             <p>Type "how to stop turning" to stop the rotation.</p>
             <p>Type "how to stop animation" to stop the background animation (when using gradient).</p>
             <p>Type "how to start animation" to start the background animation (when using gradient).</p>
-            <p>IMPORTANT Don't make White background in solid color option.</p>
+            <p>IMPORTANT</p>
+            <br>
+            <p>make sure to disable dark reader or something to force dark mode</p>
             <br>
             <p>This is a beta version, so there may be bugs.</p>
             <p>If you find any bugs, please report them to me.</p>
@@ -298,11 +300,6 @@
                     solidColorSettings.style.display = 'block';
                     imageSettings.style.display = 'none';
                     break;
-                case 'image':
-                    document.body.style.animation = 'none';
-                    solidColorSettings.style.display = 'none';
-                    imageSettings.style.display = 'block';
-                    break;
             }
         });
 
@@ -355,8 +352,7 @@
                 background: backgroundSelect.value,
                 textColor: textColorSelect.value,
                 floating: floatingToggle.checked,
-                solidColor: colorPicker.value,
-                imageUrl: document.body.style.backgroundImage.replace(/url\("(.*)"\)/, '$1') // Extract URL from backgroundImage
+                solidColor: colorPicker.value
             };
 
             const expirationDate = new Date();
@@ -383,11 +379,8 @@
                     backgroundSelect.dispatchEvent(new Event('change'));
                     textColorSelect.dispatchEvent(new Event('change'));
                     floatingToggle.dispatchEvent(new Event('change'));
-
-                    if (preferences.imageUrl) {
-                        document.body.style.backgroundImage = `url(${preferences.imageUrl})`;
-                    }
-                } catch(e) {
+                }
+                catch(e) {
                     console.error('Error loading preferences:', e);
                 }
             }
