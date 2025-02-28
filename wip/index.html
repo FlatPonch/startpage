@@ -355,7 +355,8 @@
                 background: backgroundSelect.value,
                 textColor: textColorSelect.value,
                 floating: floatingToggle.checked,
-                solidColor: colorPicker.value
+                solidColor: colorPicker.value,
+                imageUrl: document.body.style.backgroundImage
             };
 
             const expirationDate = new Date();
@@ -382,6 +383,10 @@
                     backgroundSelect.dispatchEvent(new Event('change'));
                     textColorSelect.dispatchEvent(new Event('change'));
                     floatingToggle.dispatchEvent(new Event('change'));
+
+                    if (preferences.imageUrl) {
+                        document.body.style.backgroundImage = preferences.imageUrl;
+                    }
                 } catch(e) {
                     console.error('Error loading preferences:', e);
                 }
