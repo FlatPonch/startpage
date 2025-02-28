@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlatPonch Startpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2, #9b59b6, #e74c3c, #f39c12, #2ecc71, #3498db);
+            background-size: 800% 800%;
+            animation: gradient 10s ease infinite;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        .search-engines {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .search-engines a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .search-engines a:hover {
+            color: #ffc107;
+        }
+        .search-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .search-form input[type="text"] {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px;
+        }
+        .search-form select, .search-form button {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #4a5568;
+            color: white;
+            cursor: pointer;
+        }
+        .settings-btn {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #4a5568;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #clickMe {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            color: white;
+            text-decoration: none;
+        }
+        #clickMe:hover {
+            color: #ffc107;
+        }
+        #savePreferences {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #4a5568;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search-engines" id="searchEngines"></div>
+        <form class="search-form" id="searchForm">
+            <input type="text" id="searchInput" placeholder="Enter your search query">
+            <select id="searchEngineSelect"></select>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <button class="settings-btn" id="settingsBtn">Settings</button>
+
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Settings</h2>
+            <label for="backgroundSelect">Background:</label>
+            <select id="backgroundSelect">
+                <option value="gradient">Gradient</option>
+                <option value="solid">Solid Color</option>
+                <option value="image">Image</option>
+            </select>
+            <br><br>
+            <div id="imageSettings" style="display: none;">
+                <label for="imageUpload">Image:</label>
+                <input type="file" id="imageUpload" accept="image/*">
+            </div>
+            <br>
+            <label for="textColorSelect">Text Color:</label>
+            <select id="textColorSelect">
+                <option value="white">White</option>
+                <option value="black">Black</option>
+            </select>
+            <br><br>
+            <label for="floatingToggle">Floating Animation:</label>
+            <input type="checkbox" id="floatingToggle">
+            <br><br>
+            <div id="solidColorSettings" style="display: none;">
+                <label for="colorPicker">Color:</label>
+                <input type="color" id="colorPicker" value="#667eea">
+            </div>
+            <button id="savePreferences">Save Preferences</button>
+            <h3>Hints</h3>
+            <p>Type "how to start turning" to start rotating the page.</p>
+            <p>Type "how to stop turning" to stop the rotation.</p>
+            <p>Type "how to stop animation" to stop the background animation (when using gradient).</p>
+            <p>Type "how to start animation" to start the background animation (when using gradient).</p>
+            <p>IMPORTANT Don't make White background in solid color option.</p>
+            <br>
+            <p>This is a beta version, so there may be bugs.</p>
+            <p>If you find any bugs, please report them to me.</p>
+            <p>If you have any suggestions, please tell me on github.</p>
+        </div>
+    </div>
+
+    
+    <script>
+        const searchEngines = [
+            { name: 'Google', url: 'https://www.google.com/search?q=' },
+            { name: 'Baidu', url: 'https://www.baidu.com/s?wd=' },
+            { name: 'Microsoft Bing', url: 'https://www.bing.com/search?q=' },
+            { name: 'Baidu', url: 'https://www.baidu.com/s?wd=' },
+            { name: 'DuckDuckGo', url: 'https://duckduckgo.com/?q=' },
+            { name: 'Startpage', url: 'https://www.startpage.com/do/search?q=' },
+            { name: 'Ecosia', url: 'https://www.ecosia.org/search?q=' },
+            { name: 'Wikipedia (Japanese)', url: 'https://ja.wikipedia.org/wiki/' },
+            { name: 'Wikipedia (English)', url: 'https://en.wikipedia.org/wiki/' },
+            { name: 'YouTube', url: 'https://www.youtube.com/results?search_query=' },
+            { name: 'Amazon', url: 'https://www.amazon.co.jp/s?k=' },
+            { name: 'Perplexity AI', url: 'https://www.perplexity.ai/search?q=' },
+            { name: 'Brave Search', url: 'https://search.brave.com/search?q=' },
+            { name: 'mojeek', url: 'https://www.mojeek.com/search?q=' },
+            { name: 'niconico', url: 'https://www.nicovideo.jp/search/' },
+            { name: 'bilibili', url: 'https://search.bilibili.com/all?keyword=' },
+            { name: 'Aliexpress', url: 'https://www.aliexpress.com/w/wholesale-' }
+        ];
+
+        let isAnimated = true;
+        let isRotating = false;
+
+        function populateSearchEngines() {
+            const container = document.getElementById('searchEngines');
+            const select = document.getElementById('searchEngineSelect');
+            searchEngines.forEach(engine => {
+                const link = document.createElement('a');
+                link.href = engine.url;
+                link.textContent = engine.name;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                container.appendChild(link);
+
+                const option = document.createElement('option');
+                option.value = engine.url;
+                option.textContent = engine.name;
+                select.appendChild(option);
+            });
+        }
+
+        function handleSearch(e) {
+            e.preventDefault();
+            const query = document.getElementById('searchInput').value;
+            const selectedEngine = document.getElementById('searchEngineSelect').value;
+
+            if (query.toLowerCase() === 'how to stop animation') {
+                isAnimated = false;
+                document.body.style.animation = 'none';
+                alert('Animation has stopped.');
+            } else if (query.toLowerCase() === 'how to start animation') {
+                isAnimated = true;
+                document.body.style.animation = 'gradient 10s ease infinite';
+                alert('Animation has started.');
+            } else if (query.toLowerCase() === 'how to turning') {
+                isRotating = true;
+                document.body.style.animation = 'rotate 8s linear infinite';
+                alert('Start Rotating.');
+            } else if (query.toLowerCase() === 'how to stop turning') {
+                isRotating = false;
+                document.body.style.animation = isAnimated ? 'gradient 10s ease infinite' : 'none';
+                alert('Rotating was rapidly stopped.');
+            } else {
+                window.open(selectedEngine + encodeURIComponent(query), '_blank');
+            }
+        }
+
+        document.getElementById('searchForm').addEventListener('submit', handleSearch);
+
+        // Settings modal
+        const modal = document.getElementById('settingsModal');
+        const btn = document.getElementById('settingsBtn');
+        const span = document.getElementsByClassName('close')[0];
+
+        btn.onclick = () => modal.style.display = 'block';
+        span.onclick = () => modal.style.display = 'none';
+        window.onclick = (event) => {
+            if (event.target == modal) modal.style.display = 'none';
+        };
+
+        // Background settings
+        const backgroundSelect = document.getElementById('backgroundSelect');
+        const solidColorSettings = document.getElementById('solidColorSettings');
+        const imageSettings = document.getElementById('imageSettings');
+        const colorPicker = document.getElementById('colorPicker');
+        const imageUpload = document.getElementById('imageUpload');
+
+        backgroundSelect.addEventListener('change', (e) => {
+            switch (e.target.value) {
+                case 'gradient':
+                    document.body.style.background = 'linear-gradient(135deg, #667eea, #764ba2, #9b59b6, #e74c3c, #f39c12, #2ecc71, #3498db)';
+                    document.body.style.backgroundSize = '800% 800%';
+                    document.body.style.animation = isAnimated ? 'gradient 10s ease infinite' : 'none';
+                    solidColorSettings.style.display = 'none';
+                    imageSettings.style.display = 'none';
+                    break;
+                case 'solid':
+                    document.body.style.background = colorPicker.value;
+                    document.body.style.animation = 'none';
+                    solidColorSettings.style.display = 'block';
+                    imageSettings.style.display = 'none';
+                    break;
+                case 'image':
+                    document.body.style.animation = 'none';
+                    solidColorSettings.style.display = 'none';
+                    imageSettings.style.display = 'block';
+                    break;
+            }
+        });
+
+        colorPicker.addEventListener('change', (e) => {
+            document.body.style.background = e.target.value;
+        });
+
+        imageUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.body.style.backgroundImage = `url(${e.target.result})`;
+                    document.body.style.backgroundSize = 'cover';
+                    document.body.style.backgroundPosition = 'center';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Text color settings
+        const textColorSelect = document.getElementById('textColorSelect');
+        textColorSelect.addEventListener('change', (e) => {
+            document.body.style.color = e.target.value;
+            document.querySelectorAll('a').forEach(a => a.style.color = e.target.value);
+        });
+
+        // Floating animation settings
+        const floatingToggle = document.getElementById('floatingToggle');
+        const container = document.querySelector('.container');
+
+        floatingToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                container.classList.add('floating');
+            } else {
+                container.classList.remove('floating');
+            }
+        });
+
+        // Get cookie function
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift());
+        }
+
+        // Save preferences
+        function savePreferences() {
+            const preferences = {
+                background: backgroundSelect.value,
+                textColor: textColorSelect.value,
+                floating: floatingToggle.checked,
+                solidColor: colorPicker.value
+            };
+
+            const expirationDate = new Date();
+            expirationDate.setDate(expirationDate.getDate() + 30);
+            
+            document.cookie = `startpagePreferences=${encodeURIComponent(JSON.stringify(preferences))}; `
+                + `expires=${expirationDate.toUTCString()}; path=/`;
+            
+            alert('Preferences saved!');
+        }
+
+        // Load preferences
+        function loadPreferences() {
+            const cookieData = getCookie('startpagePreferences');
+            if (cookieData) {
+                try {
+                    const preferences = JSON.parse(cookieData);
+                    backgroundSelect.value = preferences.background;
+                    textColorSelect.value = preferences.textColor;
+                    floatingToggle.checked = preferences.floating;
+                    colorPicker.value = preferences.solidColor;
+
+                    // Apply loaded preferences
+                    backgroundSelect.dispatchEvent(new Event('change'));
+                    textColorSelect.dispatchEvent(new Event('change'));
+                    floatingToggle.dispatchEvent(new Event('change'));
+                } catch(e) {
+                    console.error('Error loading preferences:', e);
+                }
+            }
+        }
+
+        // Save preferences button
+        document.getElementById('savePreferences').addEventListener('click', savePreferences);
+
+        // Initialize
+        populateSearchEngines();
+        loadPreferences();
+    </script>
+</body>
+</html>
