@@ -159,12 +159,11 @@
             <select id="backgroundSelect">
                 <option value="gradient">Gradient</option>
                 <option value="solid">Solid Color</option>
-                <option value="image">Image</option>
             </select>
             <br><br>
-            <div id="imageSettings" style="display: none;">
-                <label for="imageUpload">Image:</label>
-                <input type="file" id="imageUpload" accept="image/*">
+            <div id="solidColorSettings" style="display: none;">
+                <label for="colorPicker">Color:</label>
+                <input type="color" id="colorPicker" value="#667eea">
             </div>
             <br>
             <label for="textColorSelect">Text Color:</label>
@@ -176,10 +175,6 @@
             <label for="floatingToggle">Floating Animation:</label>
             <input type="checkbox" id="floatingToggle">
             <br><br>
-            <div id="solidColorSettings" style="display: none;">
-                <label for="colorPicker">Color:</label>
-                <input type="color" id="colorPicker" value="#667eea">
-            </div>
             <button id="savePreferences">Save Preferences</button>
             <h3>Hints</h3>
             <p>Type "how to start turning" to start rotating the page.</p>
